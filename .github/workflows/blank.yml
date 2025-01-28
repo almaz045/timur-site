@@ -1,0 +1,20 @@
+name: Vulnerability Test Workflow
+
+on:
+  workflow_dispatch:
+    inputs:
+      userInput:
+        description: 'User Input'
+        required: true
+        default: 'default value'
+
+jobs:
+  test-job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test Step
+        uses: actions/github-script@v6
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          script: |
+            console.log("User input: ", "${{ github.event.inputs.userInput }}");
